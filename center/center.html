@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .wrapper {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        float: left;
+        border: 1px solid #ccc;
+    }
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .transform_absolute_w {
+        position: relative;
+    }
+    .transform_absolute_c{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .flex_margin_w{
+        display:flex
+    }
+    .flex_margin_c {
+        margin: auto;
+    }
+    .grid{
+        display: grid;
+    }
+    .grid .center{     
+    align-self: center;
+    justify-self: center;
+    }
+    .after{
+        text-align: center;
+    }
+    .after::after{
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    }
+    .after .center{
+    vertical-align: middle;
+    }
+    .position0000{
+        position: relative;
+    }
+    .position0000 .center {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .text-align_line-height{
+        line-height: 200px;
+        text-align: center;
+        height:100%
+    }
+    .table{
+    display: table;	
+    text-align: center;
+    }
+    .table .center{  
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    }
+    .calc{
+        width: 100px;
+        height: 100px;
+        margin-left: calc(50% - 50px);
+        margin-top: calc(50% - 50px);
+    }
+    .calc_absolute{
+        position: relative;
+    }
+    
+    .calc_absolute .center{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+    }
+    .absolute_margin{
+        position: relative;
+    }
+    .absolute_margin .center{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        margin: -50px 0 0 -50px ;
+    }
+    </style>
+</head>
+<body>
+    <p>未知宽度</p>
+    <div class="wrapper flex-center">
+        <div class="center" style="background: red;">flex</div>
+    </div>
+    <div class="wrapper transform_absolute_w">
+        <div class="center transform_absolute_c" style="background: red;">transform + absolute</div>
+    </div>
+    <div class="wrapper flex_margin_w">
+        <div class="center flex_margin_c" style="background: red;">flex + margin</div>
+    </div>
+    <div class="wrapper table">
+        <div class="center" style="background: red;">table-cell</div>
+    </div>
+    <div class="wrapper position0000">
+        <div class="center" style="background: red;">position0000</div>
+    </div>
+    <div class="wrapper grid">
+        <div class="center" style="background: red;">grid</div>
+    </div>
+    <div class="wrapper after">
+        <p class="center" style="background: red;">::after(有问题去掉)</p>
+    </div>
+    <div style="clear:both"></div>
+    <p>已知宽度</p>
+    <div class="wrapper absolute_margin">
+        <div class="center" style="background: red;">absolute + 负margin</div>
+    </div>
+    <div class="wrapper">
+        <div class="center text-align_line-height" style="background: red;">text-align + line-height</div>
+    </div>
+    <div class="wrapper">
+        <div class="center calc" style="background: red;">calc</div>
+    </div>
+    <div class="wrapper calc_absolute">
+        <div class="center" style="background: red;">calc+ absolute</div>
+    </div>
+</body>
+</html>
