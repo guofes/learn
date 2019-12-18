@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bfc</title>
+    <style>
+    .father_box{
+        background: red;
+        width: 300px;
+        overflow: hidden;
+        height: 300px;
+    }
+    .son_box{
+        background: green;
+        height: 150px;
+        widows: 300px;
+        margin-top: 100px;
+    }
+    .column{
+        width: 100%;
+        height: 200px;
+    }
+    .box1{
+        float: left;
+            width: 200px;
+            height: 200px;
+            margin-right: 10px;
+            background-color: red;
+    }
+    .box2{
+        overflow: hidden;/*创建bfc */
+        height: 200px;
+        background-color: purple;
+    }
+    .float_height{
+        background: #000;
+        width: 100%;
+        overflow: hidden;
+    }
+    .box3{
+        height: 200px;
+        width: 200px;
+        float: left;
+        background: #0c0;
+    }
+    </style>
+</head>
+<body>
+    <p>案例一</p>
+    <div class="father_box">
+        <div class="son_box">
+
+        </div>
+    </div>
+    <p>案例二</p>
+    <div class="column">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <p>案例二</p>
+    <div class="float_height">
+        <div class="box3"></div>
+    </div>
+</body>
+</html>
