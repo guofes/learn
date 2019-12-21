@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类伪元素</title>
+    <style>
+    .firstLine::first-line {
+        width: 200px;
+        text-transform: uppercase;
+        background: #f3f3f3;
+     }
+     .tuchu::selection{
+         color: red;
+     }
+     .after::after{
+        content: '::after';
+        display: block;
+        width: 100px;
+        height: 100px;
+        background: red;
+     }
+    </style>
+</head>
+<body>
+    <p>1排版伪元素</p>
+    <p class="firstLine">hello world hello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello world </p>
+     <p>2突出显示伪元素</p>
+     <div class="tuchu">
+        突出显示
+     </div>
+     <p>3树中伪元素</p>
+     <div class="after"></div>
+</body>
+</html>
