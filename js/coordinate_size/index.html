@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浏览器坐标，尺寸和移动端的适配</title>
+    <style>
+        html,body {
+        width: 100%;
+        height: 100%;
+        background: #A5CEDB;
+        position: relative;
+        }
+
+        .newDiv {
+        position: absolute;
+        background: red;
+        color: white;
+        /* width: 100px;
+        height: 50px; */
+}</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+<body onmousemove="mousemove(event)">
+    <div class="clientHeight"> offsetWidth 与 offsetHeight  包含边框的宽高与padding</div>
+    <div class="offsetHeight">clientWidth 与 clientHeight   表示元素的高度与宽度与padding，不包含边框 border 的宽度与高度</div>
+    <div class="scrollHeight ">scrollHeight  = scollTop +可视区高度+不可视区   即是body文档的高度   与document.body.offsetHeight 相同</div>
+</body>
+</html>
+<script>
+    var movex;
+    var movey; //用来接受鼠标位置的全局变量
+    var offsetleft =  1
+    var offsettop = 1
+    var count = 0
+
+    function mousemove(e) {
+        var canRun = true;
+        if(!canRun){
+            console.log('if')
+            timeOver (e)
+            return
+        } else {
+            console.log('else')
+            // timeOver (e)
+        }
+        canRun = false
+        setTimeout( function () {
+            console.log("函数节流")
+            canRun = true
+        }, 1000)
+    }
+    function timeOver (e) {
+        e = e || window.event;
+        if(e.pageX || e.pageY) {
+            movex = e.clientX;
+            movey = e.clientY
+        }
+        console.log(count)
+        creatDiv(movex, movey, offsetleft, offsettop);
+        offsetleft =  document.getElementsByClassName("newDiv")[0].offsetTop;
+        offsettop =  document.getElementsByClassName("newDiv")[0].offsetLeft;
+
+    }
+    function creatDiv(x, y, offsetleft, offsettop) {
+        $(".newDiv").remove();
+        var str = ("<div class=\'newDiv\'>" + "<p>鼠标距离左边" + x + "</p>" + "<p>鼠标距离顶部" + y +"<p>当前div距离左边" + offsetleft + "</p>" + "<p>当前距离顶部" + offsettop + "</p></div>");
+        $("body").append(str);
+        $(".newDiv").css("left", x + "px").css("top", y + "px");
+    }
+    console.log('window.screen .width', window.screen .width)
+</script>
