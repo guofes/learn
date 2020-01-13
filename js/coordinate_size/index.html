@@ -22,7 +22,7 @@
 }</style>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 </head>
-<body onmousemove="mousemove(event)">
+<body onmousemove="mousemove(event)" style="height: 10000px;">
     <div class="clientHeight"> offsetWidth 与 offsetHeight  包含边框的宽高与padding</div>
     <div class="offsetHeight">clientWidth 与 clientHeight   表示元素的高度与宽度与padding，不包含边框 border 的宽度与高度</div>
     <div class="scrollHeight ">scrollHeight  = scollTop +可视区高度+不可视区   即是body文档的高度   与document.body.offsetHeight 相同</div>
@@ -36,32 +36,18 @@
     var count = 0
 
     function mousemove(e) {
-        var canRun = true;
-        if(!canRun){
-            console.log('if')
-            timeOver (e)
-            return
-        } else {
-            console.log('else')
-            // timeOver (e)
-        }
-        canRun = false
-        setTimeout( function () {
-            console.log("函数节流")
-            canRun = true
-        }, 1000)
+        windowE = e
     }
-    function timeOver (e) {
+    function debounceHandle () {
+        var e = windowE;
         e = e || window.event;
         if(e.pageX || e.pageY) {
             movex = e.clientX;
-            movey = e.clientY
+            movey = e.clientY + $(window).scrollTop()
         }
-        console.log(count)
         creatDiv(movex, movey, offsetleft, offsettop);
         offsetleft =  document.getElementsByClassName("newDiv")[0].offsetTop;
         offsettop =  document.getElementsByClassName("newDiv")[0].offsetLeft;
-
     }
     function creatDiv(x, y, offsetleft, offsettop) {
         $(".newDiv").remove();
@@ -70,4 +56,33 @@
         $(".newDiv").css("left", x + "px").css("top", y + "px");
     }
     console.log('window.screen .width', window.screen .width)
+
+    // 防抖
+    window.addEventListener('mousemove', debounce(debounceHandle, 1000));
+
+    
+function debounce(fn, wait) {    
+    var timeout = null;    
+    return function() {        
+        if(timeout !== null)   clearTimeout(timeout);        
+        timeout = setTimeout(fn, wait);    
+    }
+}
+var throttle = function(func, delay) {            
+　　var prev = Date.now();            
+　　return function() {                
+　　　　var context = this;                
+　　　　var args = arguments;                
+　　　　var now = Date.now();                
+　　　　if (now - prev >= delay) {                    
+　　　　　　func.apply(context, args);                    
+　　　　　　prev = Date.now();                
+　　　　}            
+　　}        
+}      
+// 处理函数  
+function throttleHandle() {            
+　　console.log(Math.random());        
+}        
+window.addEventListener('scroll', throttle(throttleHandle, 1000));
 </script>
